@@ -1,6 +1,5 @@
 package pe.edu.upc.nido_urbano_platform.contracts.domain.model.aggregates;
 
-
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
@@ -57,4 +56,16 @@ public class Contract extends AuditableAbstractAggregateRoot<Contract> {
 
     @Embedded
     private Term terms;
+
+    public Contract(Long aLong, Long aLong1, Long aLong2, double price, Term terms, Date date, Date date1, String pending) {
+        super();
+    }
+
+    public Contract() {
+
+    }
+
+    public void updateContractDetails(double price, Term terms, Date date, Date date1) {
+
+    }
 }
