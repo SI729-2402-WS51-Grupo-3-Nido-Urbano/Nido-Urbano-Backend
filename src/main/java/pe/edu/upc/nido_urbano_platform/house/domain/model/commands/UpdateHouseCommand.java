@@ -16,7 +16,6 @@ public record UpdateHouseCommand(
         int startsCalification,
         String statusLandlord,
         String photo,
-        String video,
-        Long verificationId
+        String video
         ) {
 }
