@@ -1,5 +1,7 @@
 package pe.edu.upc.nido_urbano_platform.house.domain.model.commands;
 
+import pe.edu.upc.nido_urbano_platform.house.domain.model.entities.Verification;
+
 import java.util.Date;
 
 public record CreateHouseCommand(
@@ -16,5 +18,6 @@ public record CreateHouseCommand(
         String statusLandlord,
         String photo,
         String video,
-        Long verificationId) {
+        Verification verificationId) {
+
 }
