@@ -2,6 +2,8 @@ package pe.edu.upc.nido_urbano_platform.house.domain.model.aggregates;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
+import pe.edu.upc.nido_urbano_platform.house.domain.model.commands.CreateHouseCommand;
+import pe.edu.upc.nido_urbano_platform.house.domain.model.commands.UpdateHouseCommand;
 import pe.edu.upc.nido_urbano_platform.house.domain.model.entities.Verification;
 import pe.edu.upc.nido_urbano_platform.house.domain.model.valueobjects.*;
 import pe.edu.upc.nido_urbano_platform.shared.domain.model.aggregates.AuditableAbstractAggregateRoot;
@@ -59,6 +61,10 @@ public class House extends AuditableAbstractAggregateRoot<House> {
     @JoinColumn(name = "verification_id")
     private Verification verification;
 
+    /*public Verification getVerification(){
+        return verification;
+    }*/
+
     public House(){
     }
 
@@ -78,4 +84,42 @@ public class House extends AuditableAbstractAggregateRoot<House> {
         this.video = video;
         this.verification = verification;
     }
+
+    public House(CreateHouseCommand command) {
+        this.userPropertyId = new UserPropertyId(command.userPropertyId());
+        this.houseName = command.houseName();
+        this.address = new AddressHouse(command.address());
+        this.houseType = HouseType.valueOf(command.houseType());
+        this.houseModal = HouseModal.valueOf(command.houseModal());
+        this.price = command.price();
+        this.size = command.size();
+        this.description = command.description();
+        this.publicationDate = command.publicationDate();
+        this.startsCalification = command.startsCalification();
+        this.statusLandlord = StatusLandlord.valueOf(command.statusLandlord());
+        this.photo = command.photo();
+        this.video = command.video();
+        this.verification = command.verificationId();
+    }
+
+    public void updateInformation(Long userPropertyID, String houseName, String address, String houseType,
+                                  String houseModal, Long price, int size, String description, Date publicationDate,
+                                  int startsCalification, String statusLandlord, String photo, String video) {
+        this.userPropertyId = new UserPropertyId(userPropertyID);
+        this.houseName = houseName;
+        this.address = new AddressHouse(address);
+        this.houseType = HouseType.valueOf(houseType);
+        this.houseModal = HouseModal.valueOf(houseModal);
+        this.price = price;
+        this.size = size;
+        this.description = description;
+        this.publicationDate = publicationDate;
+        this.startsCalification = startsCalification;
+        this.statusLandlord = StatusLandlord.valueOf(statusLandlord);
+        this.photo = photo;
+        this.video= video;
+
+    }
+
+
 }
