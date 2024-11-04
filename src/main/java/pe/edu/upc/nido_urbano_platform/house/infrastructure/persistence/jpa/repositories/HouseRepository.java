@@ -10,6 +10,7 @@ import java.util.Optional;
 @Repository
 public interface HouseRepository extends JpaRepository<House,Long> {
     boolean existsByAddressAndHouseTypeAndHouseModal(String address, String houseType, String houseModal);
+    boolean existsByAddressAndHouseTypeAndHouseModalAndIdIsNot(String address, String houseType, String houseModal, Long id);
     List<House> findByHouseModal(String houseModal);
     List<House> findByAddress(String address);
 }
