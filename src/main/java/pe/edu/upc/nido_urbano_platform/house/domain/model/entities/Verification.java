@@ -14,10 +14,10 @@ public class Verification extends AuditableModel {
     private Long id;
 
 
-    @Column(name = "owner_name", nullable = false)
+    @Column(name = "owner_name",length = 60,nullable = false)
     private String ownerName;
 
-    @Column(name = "condition", nullable = false)
+    @Column(name = "condition",length = 20, nullable = false)
     private String condition;
 
     @Getter
