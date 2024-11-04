@@ -8,6 +8,7 @@ import java.util.Optional;
 @Repository
 public interface VerificationRepository extends JpaRepository<Verification,Long> {
     boolean existsByUniqueRegistrationNumber(String uniqueRegistrationNumber);
-    Optional<Verification> findByVerificationId(Verification verificationId);
+    boolean existsByUniqueRegistrationNumberAndIdIsNot(String uniqueRegistrationNumber, Long id);
+    //Optional<Verification> findById(Verification verificationId);
 
 }
