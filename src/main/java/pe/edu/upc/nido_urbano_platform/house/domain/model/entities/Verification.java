@@ -2,6 +2,7 @@ package pe.edu.upc.nido_urbano_platform.house.domain.model.entities;
 
 import jakarta.persistence.*;
 import lombok.Getter;
+import pe.edu.upc.nido_urbano_platform.house.domain.model.commands.CreateVerificationCommand;
 import pe.edu.upc.nido_urbano_platform.house.domain.model.valueobjects.UniqueRegistrationNumber;
 import pe.edu.upc.nido_urbano_platform.shared.domain.model.entities.AuditableModel;
 
@@ -35,4 +36,15 @@ public class Verification extends AuditableModel {
         this.uniqueRegistrationNumber = uniqueRegistrationNumber;
     }
 
+    public Verification(CreateVerificationCommand command) {
+        this.ownerName = command.ownerName();
+        this.condition = command.condition();
+        this.uniqueRegistrationNumber = new UniqueRegistrationNumber(command.uniqueRegistrationNumber());
+    }
+    public Verification updateInformantion(String ownerName, String condition, String codeUniqueRegistrationNumber) {
+        this.ownerName = ownerName;
+        this.condition = condition;
+        this.uniqueRegistrationNumber = new UniqueRegistrationNumber(codeUniqueRegistrationNumber);
+        return this;
+    }
 }
