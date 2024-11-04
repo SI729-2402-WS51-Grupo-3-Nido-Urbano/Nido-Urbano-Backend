@@ -28,5 +28,9 @@ public class Tenant {
         this.name = name;
         this.dni = dni;
     }
+
+    public Object getId() {
+        return null;
+    }
 }
 

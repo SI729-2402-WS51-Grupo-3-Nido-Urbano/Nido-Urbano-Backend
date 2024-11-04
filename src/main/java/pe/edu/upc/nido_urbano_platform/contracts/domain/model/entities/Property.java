@@ -34,5 +34,9 @@ public class Property {
         this.houseModality = houseModality;
         this.price = price;
     }
+
+    public Object getId() {
+        return null;
+    }
 }
 

@@ -17,7 +17,7 @@ public class OpenApiConfiguration {
                 .info(new Info()
                         .title("Nido Urbano Platform API")
                         .description("Nido Urbano Platform application REST API documentation.")
-                        .version("v1.0.0")
+                        .version("v1.1.0")
                         .license(new License().name("Apache 2.0")
                                 .url("https://springdoc.org")))
                 .externalDocs(new ExternalDocumentation()

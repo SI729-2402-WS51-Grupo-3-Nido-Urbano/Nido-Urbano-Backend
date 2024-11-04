@@ -6,7 +6,7 @@ import java.util.Date;
 
 public record UpdateContractCommand(
         Long contractId,
-        double price,
+        Double price,
         Term terms,
         Date startDate,
         Date endDate

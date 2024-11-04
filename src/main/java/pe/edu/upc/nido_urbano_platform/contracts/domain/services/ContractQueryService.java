@@ -10,4 +10,6 @@ public interface ContractQueryService {
     List<Contract> listContractsByProperty(Long propertyId);
     List<Contract> findContractsByTenant(Long tenantId);
     List<Contract> findContractsByLandlord(Long landlordId);
+
+    Object findById(Long contractId);
 }

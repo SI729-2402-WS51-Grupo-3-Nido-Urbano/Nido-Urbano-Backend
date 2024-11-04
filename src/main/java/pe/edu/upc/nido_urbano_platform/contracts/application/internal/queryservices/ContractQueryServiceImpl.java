@@ -39,5 +39,10 @@ public class ContractQueryServiceImpl implements ContractQueryService {
     public List<Contract> findContractsByLandlord(Long landlordId) {
         return contractRepository.findByLandlordId(landlordId);
     }
+
+    @Override
+    public Object findById(Long contractId) {
+        return null;
+    }
 }
 

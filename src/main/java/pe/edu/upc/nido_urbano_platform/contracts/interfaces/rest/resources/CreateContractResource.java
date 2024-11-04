@@ -1,20 +1,15 @@
-package pe.edu.upc.nido_urbano_platform.contracts.domain.model.commands;
+package pe.edu.upc.nido_urbano_platform.contracts.interfaces.rest.resources;
 
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Positive;
-import lombok.Builder;
 
 import java.util.Date;
 
-public record CreateContractCommand(
+public record CreateContractResource(
         @NotNull Long propertyId,
         @NotNull Long tenantId,
         @NotNull Long landlordId,
         @NotNull Double price,
-        @NotNull String terms,
+        @NotNull String termsDescription,
         @NotNull Date startDate,
         @NotNull Date endDate
-) {
-    @Builder
-    public CreateContractCommand {}
-}
+) {}

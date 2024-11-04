@@ -40,5 +40,9 @@ public class Landlord {
         this.signature = signature;
         this.dni = dni;
     }
+
+    public Object getId() {
+        return null;
+    }
 }
 
