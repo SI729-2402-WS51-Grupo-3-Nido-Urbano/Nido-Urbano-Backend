@@ -4,5 +4,6 @@ import pe.edu.upc.nido_urbano_platform.feedback.domain.model.valueobjects.Score;
 
 import java.util.Date;
 
-public record CreateFeedbackCommand(String houseName, String address, Long ratedUserId, Long ratingUserId, Score score, String comments, Date ratingDate) {
+public record CreateFeedbackCommand(Long propertyId, Long userId, Score score, String comments,
+                                    Date ratingDate) {
 }

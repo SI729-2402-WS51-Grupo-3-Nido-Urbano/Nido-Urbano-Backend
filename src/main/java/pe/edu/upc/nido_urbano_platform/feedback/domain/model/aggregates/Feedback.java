@@ -17,17 +17,18 @@ import java.util.Date;
 @Setter
 @NoArgsConstructor
 public class Feedback extends AuditableAbstractAggregateRoot<Feedback> {
-    @Column(name = "house_name", nullable = false)
-    private String houseName;
 
-    @Column(name = "address", nullable = false)
-    private String address;
+    @Column(name = "property_id", nullable = false)
+    private Long propertyId;
 
-    @Column(name = "rated_user_id", nullable = false)
-    private Long ratedUserId;
+    @Column(name = "user_id", nullable = false)
+    private Long userId;
 
-    @Column(name = "rating_user_id", nullable = false)
-    private Long ratingUserId;
+    //@Column(name = "house_name", nullable = false)
+    //private String houseName;
+
+    //@Column(name = "address", nullable = false)
+    //private String address;
 
     @Embedded
     private Score score;
@@ -38,22 +39,18 @@ public class Feedback extends AuditableAbstractAggregateRoot<Feedback> {
     @Column(name = "rating_date", nullable = false)
     private Date ratingDate;
 
-    // Constructor con argumentos para facilitar la creación de objetos Feedback
-    public Feedback(String houseName, String address, Long ratedUserId, Long ratingUserId, Score score, String comments, Date ratingDate) {
-        this.houseName = houseName;
-        this.address = address;
-        this.ratedUserId = ratedUserId;
-        this.ratingUserId = ratingUserId;
+
+    public Feedback(Long propertyId, Long userId, Score score, String comments, Date ratingDate) {
+        this.propertyId = propertyId;
+        this.userId = userId;
         this.score = score;
         this.comments = comments;
         this.ratingDate = ratingDate;
     }
 
     public Feedback(CreateFeedbackCommand command) {
-        this.houseName = command.houseName();
-        this.address = command.address();
-        this.ratedUserId = command.ratedUserId();
-        this.ratingUserId = command.ratingUserId();
+        this.propertyId = command.propertyId();
+        this.userId = command.userId();
         this.score = command.score();
         this.comments = command.comments();
         this.ratingDate = command.ratingDate();
