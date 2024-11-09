@@ -5,6 +5,7 @@ import pe.edu.upc.nido_urbano_platform.feedback.domain.model.aggregates.Feedback
 import pe.edu.upc.nido_urbano_platform.feedback.domain.model.commands.CreateFeedbackCommand;
 import pe.edu.upc.nido_urbano_platform.feedback.domain.model.commands.DeleteFeedbackCommand;
 import pe.edu.upc.nido_urbano_platform.feedback.domain.model.commands.UpdateFeedbackCommand;
+import pe.edu.upc.nido_urbano_platform.feedback.domain.model.valueobjects.Score;
 import pe.edu.upc.nido_urbano_platform.feedback.domain.services.FeedbackCommandService;
 import pe.edu.upc.nido_urbano_platform.feedback.infrastructure.persistence.jpa.repositories.FeedbackRepository;
 
@@ -52,13 +53,13 @@ public class FeedbackCommandServiceImpl implements FeedbackCommandService {
     @Override
     public void handle(DeleteFeedbackCommand command) {
         // If the feedback does not exist, throw an exception
-        if (!this.feedbackRepository.existsById(command.Id())) {
-            throw new IllegalArgumentException("Feedback with id " + command.Id() + " does not exist");
+        if (!this.feedbackRepository.existsById(command.feedbackId())) {
+            throw new IllegalArgumentException("Feedback with id " + command.feedbackId() + " does not exist");
         }
 
         // Try to delete the feedback, if an error occurs, throw an exception
         try {
-            this.feedbackRepository.deleteById(command.Id());
+            this.feedbackRepository.deleteById(command.feedbackId());
         } catch (Exception e) {
             throw new IllegalArgumentException("Error while deleting feedback: " + e.getMessage());
         }

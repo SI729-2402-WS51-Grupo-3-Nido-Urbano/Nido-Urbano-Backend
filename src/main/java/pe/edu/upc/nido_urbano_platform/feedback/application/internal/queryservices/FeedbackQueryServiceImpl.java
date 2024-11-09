@@ -2,9 +2,10 @@ package pe.edu.upc.nido_urbano_platform.feedback.application.internal.queryservi
 
 import org.springframework.stereotype.Service;
 import pe.edu.upc.nido_urbano_platform.feedback.domain.model.aggregates.Feedback;
-import pe.edu.upc.nido_urbano_platform.feedback.domain.model.queries.GetAllFeedbacksByHouseNameQuery;
+import pe.edu.upc.nido_urbano_platform.feedback.domain.model.queries.GetAllFeedbacksByPropertyIdQuery;
 import pe.edu.upc.nido_urbano_platform.feedback.domain.model.queries.GetFeedbackByIdQuery;
 import pe.edu.upc.nido_urbano_platform.feedback.domain.model.queries.GetAllFeedbacksByUserIdQuery;
+import pe.edu.upc.nido_urbano_platform.feedback.domain.model.valueobjects.FeedbackId;
 import pe.edu.upc.nido_urbano_platform.feedback.domain.services.FeedbackQueryService;
 import pe.edu.upc.nido_urbano_platform.feedback.infrastructure.persistence.jpa.repositories.FeedbackRepository;
 
@@ -20,8 +21,8 @@ public class FeedbackQueryServiceImpl implements FeedbackQueryService {
     }
 
     @Override
-    public List<Feedback> handle(GetAllFeedbacksByHouseNameQuery query) {
-        return this.feedbackRepository.findByHouseName(query.houseName());
+    public List<Feedback> handle(GetAllFeedbacksByPropertyIdQuery query) {
+        return this.feedbackRepository.findByPropertyId(query.propertyId());
     }
 
     @Override
@@ -31,6 +32,6 @@ public class FeedbackQueryServiceImpl implements FeedbackQueryService {
 
     @Override
     public Optional<Feedback> handle(GetAllFeedbacksByUserIdQuery query) {
-        return this.feedbackRepository.findById(query.ratingUserId());
+        return this.feedbackRepository.findById(query.userId().userId());
     }
 }

@@ -1,4 +1,6 @@
 package pe.edu.upc.nido_urbano_platform.feedback.domain.model.queries;
 
-public record GetAllFeedbacksByUserIdQuery(Long ratingUserId) {
+import pe.edu.upc.nido_urbano_platform.feedback.domain.model.valueobjects.UserId;
+
+public record GetAllFeedbacksByUserIdQuery(UserId userId) {
 }
