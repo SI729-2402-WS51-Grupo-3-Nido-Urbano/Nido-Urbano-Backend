@@ -9,6 +9,10 @@ import pe.edu.upc.nido_urbano_platform.housing_reservation.domain.model.commands
 import pe.edu.upc.nido_urbano_platform.housing_reservation.domain.model.valueobjects.*;
 import pe.edu.upc.nido_urbano_platform.shared.domain.model.aggregates.AuditableAbstractAggregateRoot;
 
+import java.sql.Date;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+
 @Entity
 @Table(name="reservations")
 public class Reservation extends AuditableAbstractAggregateRoot<Reservation> {
@@ -18,17 +22,16 @@ public class Reservation extends AuditableAbstractAggregateRoot<Reservation> {
      */
     @Getter
     @NotNull
-    @NotBlank
-    @Column(name="start_date", length = 40, nullable=false)
-    private String startDate;
+    @Column(name = "start_date", length = 40, nullable = false)
+    private Date startDate;
 
     /**
      * End Date
      */
     @Getter
-    @NotBlank
-    @Column(name="end_date", length = 50, nullable=false)
-    private String endDate;
+    @NotNull
+    @Column(name = "end_date", length = 50, nullable = false)
+    private Date endDate;
 
     /**
      * Tenant Address
@@ -86,21 +89,44 @@ public class Reservation extends AuditableAbstractAggregateRoot<Reservation> {
 
 
     //---------------------------------------------------
-    public Reservation(String startDate,
-                       String endDate,
-                       String street,
-                       String tenantName) {
-        this.startDate = startDate;
-        this.endDate = endDate;
+
+    // Constructors
+    public Reservation(LocalDate startDate, LocalDate endDate, String street, String tenantName) {
+        validateDateDifference(startDate, endDate);
+        this.startDate = Date.valueOf(startDate); // Convert LocalDate to java.sql.Date
+        this.endDate = Date.valueOf(endDate);     // Convert LocalDate to java.sql.Date
         this.address = new TenantAddress(street);
         this.tenantName = new TenantName(tenantName);
     }
 
+    public Reservation(CreateReservationCommand command) {
+        this(
+                command.startDate().toLocalDate(), // Convert java.sql.Date to LocalDate
+                command.endDate().toLocalDate(),   // Convert java.sql.Date to LocalDate
+                command.street(),
+                command.tenantName()
+        );
+    }
+
+    public Reservation updateInformation(LocalDate startDate, LocalDate endDate, String street, String tenantName) {
+        validateDateDifference(startDate, endDate);
+        this.startDate = Date.valueOf(startDate); // Convert LocalDate to java.sql.Date
+        this.endDate = Date.valueOf(endDate);     // Convert LocalDate to java.sql.Date
+        this.address = new TenantAddress(street);
+        this.tenantName = new TenantName(tenantName);
+        return this;
+    }
+
+    // Default constructor
     public Reservation() {
     }
 
-    public void updateTenantAddress(String street) {
-        this.address = new TenantAddress(street);
+    // Validation for date difference
+    private void validateDateDifference(LocalDate startDate, LocalDate endDate) {
+        long daysDifference = ChronoUnit.DAYS.between(startDate, endDate);
+        if (daysDifference < 1 || daysDifference > 2) {
+            throw new IllegalArgumentException("The difference between startDate and endDate must be between 1 and 2 days.");
+        }
     }
 
     public String getAddress() {
@@ -111,21 +137,4 @@ public class Reservation extends AuditableAbstractAggregateRoot<Reservation> {
         return tenantName.tenantName();
     }
 
-    public Reservation(CreateReservationCommand command) {
-        this.startDate = command.startDate();
-        this.endDate = command.endDate();
-        this.address = new TenantAddress(command.street());
-        this.tenantName = new TenantName(command.tenantName());
-    }
-
-    public Reservation updateInformation(String startDate,
-                                         String endDate,
-                                         String street,
-                                         String tenantName) {
-        this.startDate = startDate;
-        this.endDate = endDate;
-        this.address = new TenantAddress(street);
-        this.tenantName = new TenantName(tenantName);
-        return this;
-    }
 }

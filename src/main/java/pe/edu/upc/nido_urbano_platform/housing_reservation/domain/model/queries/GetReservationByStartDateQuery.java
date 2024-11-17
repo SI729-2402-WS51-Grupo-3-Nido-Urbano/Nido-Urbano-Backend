@@ -1,4 +1,6 @@
 package pe.edu.upc.nido_urbano_platform.housing_reservation.domain.model.queries;
 
-public record GetReservationByStartDateQuery(String startDate) {
+import java.sql.Date;
+
+public record GetReservationByStartDateQuery(Date startDate) {
 }

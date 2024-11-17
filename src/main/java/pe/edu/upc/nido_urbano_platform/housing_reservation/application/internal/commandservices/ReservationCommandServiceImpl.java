@@ -49,8 +49,8 @@ public class ReservationCommandServiceImpl implements ReservationCommandService 
 
         var reservationToUpdate = this.reservationRepository.findById(reservationId).get();
         reservationToUpdate.updateInformation(
-                command.startDate(),
-                command.endDate(),
+                command.startDate().toLocalDate(), // Convert java.sql.Date to LocalDate
+                command.endDate().toLocalDate(),   // Convert java.sql.Date to LocalDate
                 command.street(),
                 command.tenantName()
         );

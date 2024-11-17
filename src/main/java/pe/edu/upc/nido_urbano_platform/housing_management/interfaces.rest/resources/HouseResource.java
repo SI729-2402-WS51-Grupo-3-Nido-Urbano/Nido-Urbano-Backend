@@ -1,8 +1,10 @@
 package pe.edu.upc.nido_urbano_platform.housing_management.interfaces.rest.resources;
 
+import java.sql.Date;
+
 public record HouseResource(String id,
-                            String startDate,
-                            String endDate,
+                            Date startDate,
+                            Date endDate,
                             String address,
                             String tenantName) {
 }

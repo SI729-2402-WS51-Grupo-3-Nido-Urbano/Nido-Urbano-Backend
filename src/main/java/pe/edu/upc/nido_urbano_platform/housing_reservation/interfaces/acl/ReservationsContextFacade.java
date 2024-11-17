@@ -11,6 +11,7 @@ import pe.edu.upc.nido_urbano_platform.housing_reservation.domain.services.Reser
 import pe.edu.upc.nido_urbano_platform.housing_reservation.interfaces.rest.resources.ReservationResource;
 import pe.edu.upc.nido_urbano_platform.housing_reservation.interfaces.rest.transform.ReservationResourceFromEntityAssembler;
 
+import java.sql.Date;
 import java.util.Optional;
 
 @Service
@@ -33,7 +34,7 @@ public class ReservationsContextFacade {
         return Optional.of(reservationResource);
     }
 
-    public Long fetchReservationIdByStartDate(String startDate) {
+    public Long fetchReservationIdByStartDate(Date startDate) {
         var getReservationByStartDateQuery = new GetReservationByStartDateQuery(startDate);
         var optionalReservation = reservationQueryService.handle(getReservationByStartDateQuery);
         if (optionalReservation.isEmpty()) {
@@ -42,7 +43,7 @@ public class ReservationsContextFacade {
         return optionalReservation.get().getId();
     }
 
-    public boolean existsReservationByStartDateAndIdIsNot(String startDate, Long id) {
+    public boolean existsReservationByStartDateAndIdIsNot(Date startDate, Long id) {
         var getReservationByStartDateQuery = new GetReservationByStartDateQuery(startDate);
         var optionalReservation = reservationQueryService.handle(getReservationByStartDateQuery);
         if (optionalReservation.isEmpty()) {
@@ -51,7 +52,7 @@ public class ReservationsContextFacade {
         return optionalReservation.get().getId() != id;
     }
 
-    public Long createReservation(String startDate, String endDate, String street, String tenantName) {
+    public Long createReservation(Date startDate, Date endDate, String street, String tenantName) {
         var createReservationCommand = new CreateReservationCommand(startDate, endDate, street, tenantName);
         var reservationId = reservationCommandService.handle(createReservationCommand);
         if (reservationId.equals(null)) {
@@ -60,7 +61,7 @@ public class ReservationsContextFacade {
         return reservationId;
     }
 
-    public Long updateReservation(Long reservationId, String startDate, String endDate, String street, String tenantName) {
+    public Long updateReservation(Long reservationId, Date startDate, Date endDate, String street, String tenantName) {
         var updateReservationCommand = new UpdateReservationCommand(reservationId, startDate, endDate, street, tenantName);
         var optionalReservation = reservationCommandService.handle(updateReservationCommand);
         if (optionalReservation.isEmpty()) {

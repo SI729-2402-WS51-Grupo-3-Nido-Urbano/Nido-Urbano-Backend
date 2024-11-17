@@ -6,6 +6,7 @@ import pe.edu.upc.nido_urbano_platform.housing_management.domain.model.valueobje
 import pe.edu.upc.nido_urbano_platform.housing_management.interfaces.rest.resources.HouseResource;
 import pe.edu.upc.nido_urbano_platform.housing_reservation.interfaces.acl.ReservationsContextFacade;
 
+import java.sql.Date;
 import java.util.Optional;
 
 @Service
@@ -17,25 +18,25 @@ public class ExternalReservationService {
         this.reservationsContextFacade = reservationsContextFacade;
     }
 
-    public Optional<ReservationId> fetchReservationIdByStartDate(String startDate) {
+    public Optional<ReservationId> fetchReservationIdByStartDate(Date startDate) {
         var reservationId = reservationsContextFacade.fetchReservationIdByStartDate(startDate);
         if (reservationId.equals(0L))
             return Optional.empty();
         return Optional.of(new ReservationId(reservationId));
     }
 
-    public boolean existsReservationByStartDateAndIdIsNot(String startDate, long id) {
+    public boolean existsReservationByStartDateAndIdIsNot(Date startDate, long id) {
         return reservationsContextFacade.existsReservationByStartDateAndIdIsNot(startDate, id);
     }
 
-    public Optional<ReservationId> createReservation(String startDate, String endDate, String street, String tenantName) {
+    public Optional<ReservationId> createReservation(Date startDate, Date endDate, String street, String tenantName) {
         var reservationId = reservationsContextFacade.createReservation(startDate, endDate, street, tenantName);
         if (reservationId.equals(0L))
             return Optional.empty();
         return Optional.of(new ReservationId(reservationId));
     }
 
-    public Optional<ReservationId> updateReservation(Long reservationId, String startDate, String endDate, String street, String tenantName) {
+    public Optional<ReservationId> updateReservation(Long reservationId, Date startDate, Date endDate, String street, String tenantName) {
         var reservationIdUpdated = reservationsContextFacade.updateReservation(reservationId, startDate, endDate, street, tenantName);
         if (reservationIdUpdated.equals(0L))
             return Optional.empty();
