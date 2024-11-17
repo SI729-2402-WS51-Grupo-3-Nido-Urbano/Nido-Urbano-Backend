@@ -48,7 +48,12 @@ public class ReservationCommandServiceImpl implements ReservationCommandService 
         }
 
         var reservationToUpdate = this.reservationRepository.findById(reservationId).get();
-        reservationToUpdate.updateInformation(command.startDate(), command.endDate(), command.street());
+        reservationToUpdate.updateInformation(
+                command.startDate(),
+                command.endDate(),
+                command.street(),
+                command.tenantName()
+        );
 
         try {
             var updatedReservation = this.reservationRepository.save(reservationToUpdate);

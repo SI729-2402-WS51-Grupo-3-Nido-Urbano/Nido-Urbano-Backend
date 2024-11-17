@@ -5,6 +5,10 @@ import pe.edu.upc.nido_urbano_platform.housing_reservation.interfaces.rest.resou
 
 public record ReservationResourceFromEntityAssembler() {
     public static ReservationResource toResourceFromEntity(Reservation entity) {
-        return new ReservationResource(entity.getId(), entity.getStartDate(), entity.getEndDate(), entity.getAddress());
+        return new ReservationResource(entity.getId(),
+                entity.getStartDate(),
+                entity.getEndDate(),
+                entity.getAddress(),
+                entity.getTenantName());
     }
 }

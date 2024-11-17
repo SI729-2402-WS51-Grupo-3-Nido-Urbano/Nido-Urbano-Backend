@@ -5,6 +5,9 @@ import pe.edu.upc.nido_urbano_platform.housing_management.interfaces.rest.resour
 
 public class CreateHouseCommandFromResourceAssembler {
     public static CreateHouseCommand toCommandFromResource(CreateHouseResource resource) {
-        return new CreateHouseCommand(resource.startDate(), resource.endDate(), resource.address());
+        return new CreateHouseCommand(resource.startDate(),
+                resource.endDate(),
+                resource.address(),
+                resource.tenantName());
     }
 }

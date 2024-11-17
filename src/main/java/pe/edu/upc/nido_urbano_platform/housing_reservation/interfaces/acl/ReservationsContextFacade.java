@@ -51,8 +51,8 @@ public class ReservationsContextFacade {
         return optionalReservation.get().getId() != id;
     }
 
-    public Long createReservation(String startDate, String endDate, String street) {
-        var createReservationCommand = new CreateReservationCommand(startDate, endDate, street);
+    public Long createReservation(String startDate, String endDate, String street, String tenantName) {
+        var createReservationCommand = new CreateReservationCommand(startDate, endDate, street, tenantName);
         var reservationId = reservationCommandService.handle(createReservationCommand);
         if (reservationId.equals(null)) {
             return 0L;
@@ -60,8 +60,8 @@ public class ReservationsContextFacade {
         return reservationId;
     }
 
-    public Long updateReservation(Long reservationId, String startDate, String endDate, String street) {
-        var updateReservationCommand = new UpdateReservationCommand(reservationId, startDate, endDate, street);
+    public Long updateReservation(Long reservationId, String startDate, String endDate, String street, String tenantName) {
+        var updateReservationCommand = new UpdateReservationCommand(reservationId, startDate, endDate, street, tenantName);
         var optionalReservation = reservationCommandService.handle(updateReservationCommand);
         if (optionalReservation.isEmpty()) {
             return 0L;

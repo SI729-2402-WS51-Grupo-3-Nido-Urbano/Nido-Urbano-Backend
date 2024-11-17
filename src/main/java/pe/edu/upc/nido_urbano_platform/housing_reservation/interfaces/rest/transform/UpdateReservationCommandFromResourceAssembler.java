@@ -5,6 +5,6 @@ import pe.edu.upc.nido_urbano_platform.housing_reservation.interfaces.rest.resou
 
 public record UpdateReservationCommandFromResourceAssembler() {
     public static UpdateReservationCommand toCommandFromResource(Long reservationId, ReservationResource resource) {
-        return new UpdateReservationCommand(reservationId, resource.startDate(), resource.endDate(), resource.street());
+        return new UpdateReservationCommand(reservationId, resource.startDate(), resource.endDate(), resource.street(), resource.tenantName());
     }
 }

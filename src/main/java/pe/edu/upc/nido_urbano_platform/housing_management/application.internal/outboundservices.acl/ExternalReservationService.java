@@ -28,15 +28,15 @@ public class ExternalReservationService {
         return reservationsContextFacade.existsReservationByStartDateAndIdIsNot(startDate, id);
     }
 
-    public Optional<ReservationId> createReservation(String startDate, String endDate, String street) {
-        var reservationId = reservationsContextFacade.createReservation(startDate, endDate, street);
+    public Optional<ReservationId> createReservation(String startDate, String endDate, String street, String tenantName) {
+        var reservationId = reservationsContextFacade.createReservation(startDate, endDate, street, tenantName);
         if (reservationId.equals(0L))
             return Optional.empty();
         return Optional.of(new ReservationId(reservationId));
     }
 
-    public Optional<ReservationId> updateReservation(Long reservationId, String startDate, String endDate, String street) {
-        var reservationIdUpdated = reservationsContextFacade.updateReservation(reservationId, startDate, endDate, street);
+    public Optional<ReservationId> updateReservation(Long reservationId, String startDate, String endDate, String street, String tenantName) {
+        var reservationIdUpdated = reservationsContextFacade.updateReservation(reservationId, startDate, endDate, street, tenantName);
         if (reservationIdUpdated.equals(0L))
             return Optional.empty();
         return Optional.of(new ReservationId(reservationIdUpdated));
@@ -51,8 +51,11 @@ public class ExternalReservationService {
         if (reservationResource.isEmpty())
             return Optional.empty();
 
-        var houseResource = new HouseResource(house.getHouseCode().houseCode(), reservationResource.get().startDate(),
-                reservationResource.get().endDate(), reservationResource.get().street());
+        var houseResource = new HouseResource(house.getHouseCode().houseCode(),
+                reservationResource.get().startDate(),
+                reservationResource.get().endDate(),
+                reservationResource.get().street(),
+                reservationResource.get().tenantName());
         return Optional.of(houseResource);
     }
 }

@@ -32,7 +32,10 @@ public class HouseCommandServiceImpl implements HouseCommandService {
             });
         }
 
-        reservationId = this.externalReservationService.createReservation(command.startDate(), command.endDate(), command.street());
+        reservationId = this.externalReservationService.createReservation(command.startDate(),
+                command.endDate(),
+                command.street(),
+                command.tenantName());
         if (reservationId.isEmpty()) {
             throw new IllegalArgumentException("Unable to create reservation");
         }
@@ -53,7 +56,12 @@ public class HouseCommandServiceImpl implements HouseCommandService {
             throw new IllegalArgumentException("House with start date " + command.startDate() + " already exists");
         }
 
-        var reservationId = this.externalReservationService.updateReservation(optionalHouse.get().getReservationId(), command.startDate(), command.endDate(), command.street());
+        var reservationId = this.externalReservationService.updateReservation(
+                optionalHouse.get().getReservationId(),
+                command.startDate(),
+                command.endDate(),
+                command.street(),
+                command.tenantName());
 
         if (reservationId.isEmpty()) {
             throw new IllegalArgumentException("Unable to update reservation");

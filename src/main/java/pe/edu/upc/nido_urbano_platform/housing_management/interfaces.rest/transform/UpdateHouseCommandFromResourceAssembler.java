@@ -6,6 +6,11 @@ import pe.edu.upc.nido_urbano_platform.housing_management.interfaces.rest.resour
 
 public class UpdateHouseCommandFromResourceAssembler {
     public static UpdateHouseCommand toCommandFromResource(String houseCode, HouseResource resource) {
-        return new UpdateHouseCommand(new HouseCode(houseCode), resource.startDate(), resource.endDate(), resource.address());
+        return new UpdateHouseCommand(new HouseCode(houseCode),
+                resource.startDate(),
+                resource.endDate(),
+                resource.address(),
+                resource.tenantName()
+        );
     }
 }
