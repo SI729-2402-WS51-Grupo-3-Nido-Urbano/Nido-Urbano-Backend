@@ -49,14 +49,14 @@ public class FeedbackController {
         var optionalFeedback = this.feedbackQueryService.handle(getFeedbackByIdQuery);
 
         var profileResource = FeedbackResourceFromEntityAssembler.toResourceFromEntity(optionalFeedback.get());
-        return new ResponseEntity<>(profileResource, HttpStatus.CREATED);
+        return new ResponseEntity<>(profileResource, HttpStatus.OK);
     }
 
 
-    @GetMapping("/{propertyId}")
-    public ResponseEntity<List<FeedbackResource>> getAllFeedbackByPropertyId(@PathVariable Long propertyId) {
-        var getFeedbackByPropertyIdQuery = new GetAllFeedbacksByPropertyIdQuery(new PropertyId(propertyId));
-        var Feedbacks = this.feedbackQueryService.handle(getFeedbackByPropertyIdQuery);
+    @GetMapping("/{feedbackId}")
+    public ResponseEntity<List<FeedbackResource>> getFeedbackById(@PathVariable Long feedbackId) {
+        var getFeedbackByIdQuery = new GetFeedbackByIdQuery(feedbackId);
+        var Feedbacks = this.feedbackQueryService.handle(getFeedbackByIdQuery);
         var feedbackResources = Feedbacks.stream()
                 .map(FeedbackResourceFromEntityAssembler::toResourceFromEntity)
                 .collect(Collectors.toList());

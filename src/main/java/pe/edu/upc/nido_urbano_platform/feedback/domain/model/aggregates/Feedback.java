@@ -47,14 +47,6 @@ public class Feedback extends AuditableAbstractAggregateRoot<Feedback> {
     private Date ratingDate;
 
 
-    /*public Feedback(Long propertyId, Long userId, Score score, String comments, Date ratingDate) {
-        this.propertyId = new PropertyId();
-        this.userId = new UserId();
-        this.score = score;
-        this.comments = comments;
-        this.ratingDate = ratingDate;
-    }*/
-
     public Feedback(CreateFeedbackCommand command) {
         this.propertyId = new PropertyId(command.propertyId());
         this.userId = new UserId(command.userId());
