@@ -18,7 +18,7 @@ public class Term {
     }
 
     // Constructor sin argumentos para JPA
-    protected Term() {
+    public Term() {
         this.description = null;
         this.agreed = null;
     }

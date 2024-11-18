@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import pe.edu.upc.nido_urbano_platform.contracts.domain.model.aggregates.Contract;
-import pe.edu.upc.nido_urbano_platform.contracts.domain.model.commands.CreateContractCommand;
+import pe.edu.upc.nido_urbano_platform.contracts.domain.model.commands.CreateRentalContractCommand;
 import pe.edu.upc.nido_urbano_platform.contracts.domain.services.ContractCommandService;
 import pe.edu.upc.nido_urbano_platform.contracts.domain.services.ContractQueryService;
 import pe.edu.upc.nido_urbano_platform.contracts.interfaces.rest.resources.ContractResource;
@@ -33,7 +33,7 @@ public class ContractController {
 
     @PostMapping
     public ResponseEntity<ContractResource> createContract(@RequestBody CreateContractResource resource) {
-        CreateContractCommand createContractCommand = CreateContractCommandFromResourceAssembler.toCommandFromResource(resource);
+        CreateRentalContractCommand createContractCommand = CreateContractCommandFromResourceAssembler.toCommandFromResource(resource);
         Long contractId = contractCommandService.handle(createContractCommand);
 
         if (contractId.equals(0L)) {
