@@ -40,7 +40,7 @@ public class FeedbackCommandServiceImpl implements FeedbackCommandService {
         }
 
         var feedbackToUpdate = this.feedbackRepository.findById(feedbackId).get();
-        feedbackToUpdate.updateFeedback(command.score(), command.comments(), command.ratingDate());
+        feedbackToUpdate.updateFeedback(command.score(), command.comments());
 
         try {
             var updatedFeedback = this.feedbackRepository.save(feedbackToUpdate);

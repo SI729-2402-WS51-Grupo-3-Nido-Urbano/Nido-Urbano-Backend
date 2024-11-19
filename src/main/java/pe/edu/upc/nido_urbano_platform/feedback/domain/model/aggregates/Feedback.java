@@ -34,6 +34,9 @@ public class Feedback extends AuditableAbstractAggregateRoot<Feedback> {
     })
     private UserId userId;
 
+    @Column(name = "userName", columnDefinition = "TEXT")
+    private String userName;
+
     @Embedded
     @AttributeOverrides( {
             @AttributeOverride(name = "score", column = @Column(name = "score", nullable = false))
@@ -43,22 +46,18 @@ public class Feedback extends AuditableAbstractAggregateRoot<Feedback> {
     @Column(name = "comments", columnDefinition = "TEXT")
     private String comments;
 
-    @Column(name = "rating_date", nullable = false)
-    private Date ratingDate;
-
 
     public Feedback(CreateFeedbackCommand command) {
         this.propertyId = new PropertyId(command.propertyId());
         this.userId = new UserId(command.userId());
+        this.userName = command.userName();
         this.score = new Score(command.score());
         this.comments = command.comments();
-        this.ratingDate = command.ratingDate();
     }
 
-    public Feedback updateFeedback(int score, String comments, Date ratingDate) {
+    public Feedback updateFeedback(int score, String comments) {
         this.score = new Score(score);
         this.comments = comments;
-        this.ratingDate = ratingDate;
         return this;
     }
 }

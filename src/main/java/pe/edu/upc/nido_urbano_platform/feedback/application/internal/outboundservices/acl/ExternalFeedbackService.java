@@ -14,16 +14,16 @@ public class ExternalFeedbackService {
         this.feedbacksContextFacade = feedbacksContextFacade;
     }
 
-    public Optional<FeedbackId> createFeedback(Long propertyId, Long userId, int score, String comments, Date ratingDate) {
-        var feedbackId = feedbacksContextFacade.createFeedback(propertyId, userId, score, comments, ratingDate);
+    public Optional<FeedbackId> createFeedback(Long propertyId, Long userId, String userName, int score, String comments) {
+        var feedbackId = feedbacksContextFacade.createFeedback(propertyId, userId, userName, score, comments);
         if (feedbackId.equals(0L))
             return Optional.empty();
         return Optional.of(new FeedbackId(feedbackId));
     }
 
 
-    public Optional<FeedbackId> updateFeedback(Long id, Long propertyId, Long userId, int score, String comments, Date ratingDate) {
-        var feedbackIdUpdated = feedbacksContextFacade.updateFeedback(id, propertyId, userId, score, comments, ratingDate);
+    public Optional<FeedbackId> updateFeedback(Long id, Long propertyId, Long userId, String userName, int score, String comments) {
+        var feedbackIdUpdated = feedbacksContextFacade.updateFeedback(id, propertyId, userId, userName, score, comments);
         if (feedbackIdUpdated.equals(0L))
             return Optional.empty();
         return Optional.of(new FeedbackId(feedbackIdUpdated));

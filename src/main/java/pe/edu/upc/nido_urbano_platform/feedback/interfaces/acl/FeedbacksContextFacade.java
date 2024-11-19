@@ -21,8 +21,8 @@ public class FeedbacksContextFacade {
     }
 
 
-    public Long createFeedback(Long propertyId, Long userId, int score, String comments, Date ratingDate) {
-        var CreateFeedbackCommand = new CreateFeedbackCommand(propertyId, userId, score, comments, ratingDate);
+    public Long createFeedback(Long propertyId, Long userId, String userName, int score, String comments) {
+        var CreateFeedbackCommand = new CreateFeedbackCommand(propertyId, userId, userName, score, comments);
         var profileId = feedbackCommandService.handle(CreateFeedbackCommand);
         if (profileId.equals(null)) {
             return 0L;
@@ -31,8 +31,8 @@ public class FeedbacksContextFacade {
     }
 
 
-    public Long updateFeedback(Long id,Long propertyId, Long userId, int score, String comments, Date ratingDate) {
-        var updateFeedbackCommand = new UpdateFeedbackCommand(id, propertyId, userId, score, comments, ratingDate);
+    public Long updateFeedback(Long id,Long propertyId, Long userId, String userName, int score, String comments) {
+        var updateFeedbackCommand = new UpdateFeedbackCommand(id, propertyId, userId, userName, score, comments);
         var optionalFeedback = feedbackCommandService.handle(updateFeedbackCommand);
         if (optionalFeedback.isEmpty()) {
             return 0L;
