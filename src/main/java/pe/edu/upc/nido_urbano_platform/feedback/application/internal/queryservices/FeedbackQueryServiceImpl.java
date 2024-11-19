@@ -5,6 +5,7 @@ import pe.edu.upc.nido_urbano_platform.feedback.domain.model.aggregates.Feedback
 import pe.edu.upc.nido_urbano_platform.feedback.domain.model.queries.GetAllFeedbacksByPropertyIdQuery;
 import pe.edu.upc.nido_urbano_platform.feedback.domain.model.queries.GetFeedbackByIdQuery;
 import pe.edu.upc.nido_urbano_platform.feedback.domain.model.queries.GetAllFeedbacksByUserIdQuery;
+import pe.edu.upc.nido_urbano_platform.feedback.domain.model.queries.GetFeedbacksQuery;
 import pe.edu.upc.nido_urbano_platform.feedback.domain.model.valueobjects.FeedbackId;
 import pe.edu.upc.nido_urbano_platform.feedback.domain.services.FeedbackQueryService;
 import pe.edu.upc.nido_urbano_platform.feedback.infrastructure.persistence.jpa.repositories.FeedbackRepository;
@@ -33,5 +34,10 @@ public class FeedbackQueryServiceImpl implements FeedbackQueryService {
     @Override
     public Optional<Feedback> handle(GetAllFeedbacksByUserIdQuery query) {
         return this.feedbackRepository.findById(query.userId().userId());
+    }
+
+    @Override
+    public List<Feedback> handle(GetFeedbacksQuery query) {
+        return this.feedbackRepository.findAll();
     }
 }

@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.nido_urbano_platform.feedback.domain.model.commands.DeleteFeedbackCommand;
 import pe.edu.upc.nido_urbano_platform.feedback.domain.model.queries.GetAllFeedbacksByPropertyIdQuery;
 import pe.edu.upc.nido_urbano_platform.feedback.domain.model.queries.GetFeedbackByIdQuery;
+import pe.edu.upc.nido_urbano_platform.feedback.domain.model.queries.GetFeedbacksQuery;
 import pe.edu.upc.nido_urbano_platform.feedback.domain.model.valueobjects.FeedbackId;
 import pe.edu.upc.nido_urbano_platform.feedback.domain.model.valueobjects.PropertyId;
 import pe.edu.upc.nido_urbano_platform.feedback.domain.services.FeedbackCommandService;
@@ -50,6 +51,16 @@ public class FeedbackController {
 
         var profileResource = FeedbackResourceFromEntityAssembler.toResourceFromEntity(optionalFeedback.get());
         return new ResponseEntity<>(profileResource, HttpStatus.OK);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<FeedbackResource>> getFeedbacks() {
+        var getFeedbacksQuery = new GetFeedbacksQuery();
+        var Feedbacks = this.feedbackQueryService.handle(getFeedbacksQuery);
+        var feedbackResources = Feedbacks.stream()
+                .map(FeedbackResourceFromEntityAssembler::toResourceFromEntity)
+                .collect(Collectors.toList());
+        return ResponseEntity.ok(feedbackResources);
     }
 
 
