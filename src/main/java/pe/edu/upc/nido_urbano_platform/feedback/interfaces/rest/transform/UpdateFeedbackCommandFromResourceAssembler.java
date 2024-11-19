@@ -7,6 +7,6 @@ import pe.edu.upc.nido_urbano_platform.feedback.interfaces.rest.resources.Feedba
 public class UpdateFeedbackCommandFromResourceAssembler {
     public static UpdateFeedbackCommand toCommandFromResource(Long feedbackId, FeedbackResource resource) {
         return new UpdateFeedbackCommand(feedbackId, resource.propertyId(), resource.userId(),
-                resource.score(), resource.comments(), resource.ratingDate());
+                resource.userName(), resource.score(), resource.comments());
     }
 }

@@ -6,6 +6,6 @@ import pe.edu.upc.nido_urbano_platform.feedback.interfaces.rest.resources.Feedba
 public class FeedbackResourceFromEntityAssembler {
     public static FeedbackResource toResourceFromEntity(Feedback entity) {
         return new FeedbackResource(entity.getId(), entity.getPropertyId().propertyId(), entity.getUserId().userId(),
-                entity.getScore().value(), entity.getComments(), entity.getRatingDate());
+                entity.getUserName(), entity.getScore().value(), entity.getComments());
     }
 }

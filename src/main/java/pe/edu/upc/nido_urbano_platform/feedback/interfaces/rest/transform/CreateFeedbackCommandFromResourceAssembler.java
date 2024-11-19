@@ -6,7 +6,7 @@ import pe.edu.upc.nido_urbano_platform.feedback.interfaces.rest.resources.Create
 public class CreateFeedbackCommandFromResourceAssembler {
     public static CreateFeedbackCommand toCommandFromResource(CreateFeedbackResource resource) {
         return new CreateFeedbackCommand(resource.propertyId(),
-                resource.userId(), resource.score(),
-                resource.comments(), resource.ratingDate());
+                resource.userId(), resource.userName(), resource.score(),
+                resource.comments());
     }
 }
