@@ -3,13 +3,15 @@ package pe.edu.upc.nido_urbano_platform.contracts.infrastructure.persistence.jpa
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import pe.edu.upc.nido_urbano_platform.contracts.domain.model.aggregates.RentalContract;
+import pe.edu.upc.nido_urbano_platform.contracts.domain.model.valueobjects.LandlordId;
+import pe.edu.upc.nido_urbano_platform.contracts.domain.model.valueobjects.PropertyId;
 
-import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface RentContractRepository extends JpaRepository<RentalContract, Long> {
     // Find contract by property ID
-    List<RentalContract> findByPropertyId(Long propertyId);
+    Optional<RentalContract> findByPropertyId(PropertyId propertyId);
 
-    List<RentalContract> findByLandlordId(Long landlordId);
+    Optional<RentalContract> findByLandlordId(LandlordId landlordId);
 }

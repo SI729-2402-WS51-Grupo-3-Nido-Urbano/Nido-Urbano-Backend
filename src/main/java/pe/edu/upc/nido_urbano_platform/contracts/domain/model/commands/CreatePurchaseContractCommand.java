@@ -1,7 +1,5 @@
 package pe.edu.upc.nido_urbano_platform.contracts.domain.model.commands;
 
-import pe.edu.upc.nido_urbano_platform.contracts.domain.model.valueobjects.Term;
-
 import java.util.Date;
 
 public record CreatePurchaseContractCommand (
@@ -12,7 +10,8 @@ public record CreatePurchaseContractCommand (
         Double purchasePrice,
         String paymentMethod,
         String downPayment,
-        Term terms,
+        String terms,
+        Boolean agreedTerms,
         Date closingDate,
         Boolean transferCostsIncluded
       ){

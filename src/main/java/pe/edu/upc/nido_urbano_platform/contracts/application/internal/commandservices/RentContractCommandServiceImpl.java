@@ -40,7 +40,7 @@ public class RentContractCommandServiceImpl implements RentalContractCommandServ
         }
 
         var rentalContractToUpdate = this.rentContractRepository.findById(rentalContractId).get();
-        rentalContractToUpdate.updateRentalDetails(command.status(), command.rent(), command.paymentFrequency(), command.depositAmount(), command.terminationFee(),command.paymentMethod(),command.terms());
+        rentalContractToUpdate.updateRentalDetails(command.status(), command.rent(), command.paymentFrequency(), command.depositAmount(), command.terminationFee(),command.paymentMethod(),command.agreedTerms());
 
         try {
             var updatedRentContract = this.rentContractRepository.save(rentalContractToUpdate);

@@ -5,10 +5,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import pe.edu.upc.nido_urbano_platform.contracts.domain.model.commands.CreateRentalContractCommand;
-import pe.edu.upc.nido_urbano_platform.contracts.domain.model.commands.UpdateRentalContractCommand;
 import pe.edu.upc.nido_urbano_platform.contracts.domain.model.valueobjects.LandlordId;
 import pe.edu.upc.nido_urbano_platform.contracts.domain.model.valueobjects.PropertyId;
-import pe.edu.upc.nido_urbano_platform.contracts.domain.model.valueobjects.Term;
+import pe.edu.upc.nido_urbano_platform.contracts.domain.model.valueobjects.Terms;
 import pe.edu.upc.nido_urbano_platform.contracts.domain.model.valueobjects.UserId;
 import pe.edu.upc.nido_urbano_platform.shared.domain.model.aggregates.AuditableAbstractAggregateRoot;
 
@@ -39,13 +38,13 @@ public class RentalContract extends AuditableAbstractAggregateRoot<RentalContrac
     })
     private LandlordId landlordId;
 
-    @Column(name = "status", nullable = false)
+    @Column(name = "status")
     private String status;
 
     @Column(name = "rent", nullable = false)
     private Double rent;
 
-    @Column(name = "payment_frequency", nullable = false)
+    @Column(name = "payment_frequency")
     private String paymentFrequency;
 
     @Column(name = "deposit_amount", nullable = false)
@@ -58,7 +57,13 @@ public class RentalContract extends AuditableAbstractAggregateRoot<RentalContrac
     private String paymentMethod;
 
     @Embedded
-    private Term terms;
+    @AttributeOverrides({
+            @AttributeOverride(name = "value", column = @Column(name = "terms", nullable = false))
+    })
+    private Terms terms;
+
+    @Column(name = "agreedTerms")
+    private Boolean agreedTerms;
 
     @Column(name = "start_date", nullable = false)
     private Date startDate;
@@ -75,13 +80,14 @@ public class RentalContract extends AuditableAbstractAggregateRoot<RentalContrac
         this.rent = command.rent();
         this.depositAmount = command.depositAmount();
         this.terminationFee = command.terminationFee();
+        this.terms = new Terms((command.terms()));
         this.paymentMethod = command.paymentMethod();
-        this.terms = new Term();
+        this.agreedTerms = command.agreedTerms();
         this.startDate = command.startDate();
         this.endDate = command.endDate();
     }
     //Update
-    public void updateRentalDetails(String Status, Double rent, String paymentFrequency, Double depositAmount, Double terminationFee, String paymentMethod,Term terms) {
+    public void updateRentalDetails(String Status, Double rent, String paymentFrequency, Double depositAmount, Double terminationFee, String paymentMethod, Boolean agreedTerms) {
         this.status = status;
         this.rent = rent;
         this.paymentFrequency = paymentFrequency;
@@ -89,6 +95,7 @@ public class RentalContract extends AuditableAbstractAggregateRoot<RentalContrac
         this.terminationFee = terminationFee;
         this.paymentMethod = paymentMethod;
         this.terms = terms;
+        this.agreedTerms = agreedTerms;
     }
     //Delete
 

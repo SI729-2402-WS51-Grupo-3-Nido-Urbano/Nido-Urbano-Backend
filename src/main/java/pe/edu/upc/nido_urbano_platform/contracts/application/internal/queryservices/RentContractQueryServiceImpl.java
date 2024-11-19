@@ -4,10 +4,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import pe.edu.upc.nido_urbano_platform.contracts.domain.model.aggregates.RentalContract;
+import pe.edu.upc.nido_urbano_platform.contracts.domain.model.queries.GetAllContractsByLandLordIdQuery;
+import pe.edu.upc.nido_urbano_platform.contracts.domain.model.queries.GetAllContractsByPropertyIdQuery;
+import pe.edu.upc.nido_urbano_platform.contracts.domain.model.queries.GetAllContractsByUserIdQuery;
+import pe.edu.upc.nido_urbano_platform.contracts.domain.model.queries.GetContractByIdQuery;
 import pe.edu.upc.nido_urbano_platform.contracts.domain.services.RentalContractQueryService;
 import pe.edu.upc.nido_urbano_platform.contracts.infrastructure.persistence.jpa.repositories.RentContractRepository;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -21,28 +24,23 @@ public class RentContractQueryServiceImpl implements RentalContractQueryService 
     }
 
     @Override
-    public Optional<RentalContract> getContractDetails(Long contractId) {
-        return rentContractRepository.findById(contractId);
+    public Optional<RentalContract> handle(GetAllContractsByUserIdQuery query) {
+        return this.rentContractRepository.findById(query.userId().userId());
     }
 
     @Override
-    public List<RentalContract> listContractsByProperty(Long propertyId) {
-        return rentContractRepository.findByPropertyId(propertyId).stream().toList();
+    public Optional<RentalContract> handle(GetAllContractsByLandLordIdQuery query) {
+        return this.rentContractRepository.findByLandlordId(query.landlordId());
     }
 
     @Override
-    public Optional<RentalContract> findContractsByTenant(Long tenantId) {
-        return rentContractRepository.findById(tenantId);
+    public Optional<RentalContract> handle(GetAllContractsByPropertyIdQuery query) {
+        return this.rentContractRepository.findByPropertyId(query.propertyId());
     }
 
     @Override
-    public List<RentalContract> findContractsByLandlord(Long landlordId) {
-        return rentContractRepository.findByLandlordId(landlordId);
-    }
-
-    @Override
-    public Object findById(Long contractId) {
-        return null;
+    public Optional<RentalContract> handle(GetContractByIdQuery query) {
+        return this.rentContractRepository.findById(query.contractId());
     }
 }
 

@@ -4,10 +4,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import pe.edu.upc.nido_urbano_platform.contracts.domain.model.aggregates.PurchaseContract;
+import pe.edu.upc.nido_urbano_platform.contracts.domain.model.queries.GetAllContractsByPropertyIdQuery;
+import pe.edu.upc.nido_urbano_platform.contracts.domain.model.queries.GetAllContractsByLandLordIdQuery;
+import pe.edu.upc.nido_urbano_platform.contracts.domain.model.queries.GetAllContractsByUserIdQuery;
+import pe.edu.upc.nido_urbano_platform.contracts.domain.model.queries.GetContractByIdQuery;
 import pe.edu.upc.nido_urbano_platform.contracts.domain.services.PurchaseContractQueryService;
 import pe.edu.upc.nido_urbano_platform.contracts.infrastructure.persistence.jpa.repositories.PurchaseContractRepository;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -22,27 +25,22 @@ public class PurchaseContractQueryServiceImpl implements PurchaseContractQuerySe
 
 
     @Override
-    public Optional<PurchaseContract> getContractDetails(Long contractId) {
-        return purchaseContractRepository.findById(contractId);
+    public Optional<PurchaseContract> handle(GetAllContractsByUserIdQuery query) {
+        return this.purchaseContractRepository.findById(query.userId().userId());
     }
 
     @Override
-    public List<PurchaseContract> listContractsByProperty(Long propertyId) {
-        return purchaseContractRepository.findByPropertyId(propertyId).stream().toList();
+    public Optional<PurchaseContract> handle(GetAllContractsByLandLordIdQuery query) {
+        return this.purchaseContractRepository.findByLandlordId(query.landlordId());
     }
 
     @Override
-    public Optional<PurchaseContract> findContractsByTenant(Long tenantId) {
-        return purchaseContractRepository.findById(tenantId);
+    public Optional<PurchaseContract> handle(GetAllContractsByPropertyIdQuery query) {
+        return this.purchaseContractRepository.findByPropertyId(query.propertyId());
     }
 
     @Override
-    public List<PurchaseContract> findContractsByLandlord(Long landlordId) {
-        return purchaseContractRepository.findByLandlordId(landlordId);
-    }
-
-    @Override
-    public Object findById(Long contractId) {
-        return null;
+    public Optional<PurchaseContract> handle(GetContractByIdQuery query) {
+        return this.purchaseContractRepository.findById(query.contractId());
     }
 }

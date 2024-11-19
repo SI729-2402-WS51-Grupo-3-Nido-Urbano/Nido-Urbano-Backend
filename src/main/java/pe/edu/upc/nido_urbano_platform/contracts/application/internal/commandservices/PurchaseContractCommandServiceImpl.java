@@ -40,7 +40,7 @@ public class PurchaseContractCommandServiceImpl implements PurchaseContractComma
         }
 
         var purchaseContractToUpdate = this.purchaseContractRepository.findById(purchaseContractId).get();
-        purchaseContractToUpdate.updatePurchaseDetails(command.status(), command.purchasePrice(), command.paymentMethod(), command.closingDate(), command.terms());
+        purchaseContractToUpdate.updatePurchaseDetails(command.status(), command.purchasePrice(), command.paymentMethod(), command.closingDate(), command.agreedTerms());
 
         try {
             var updatedPurchaseContract = this.purchaseContractRepository.save(purchaseContractToUpdate);

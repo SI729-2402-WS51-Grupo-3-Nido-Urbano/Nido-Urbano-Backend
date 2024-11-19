@@ -5,11 +5,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import pe.edu.upc.nido_urbano_platform.contracts.domain.model.commands.CreatePurchaseContractCommand;
-import pe.edu.upc.nido_urbano_platform.contracts.domain.model.commands.UpdatePurchaseContractCommand;
 import pe.edu.upc.nido_urbano_platform.contracts.domain.model.valueobjects.LandlordId;
 import pe.edu.upc.nido_urbano_platform.contracts.domain.model.valueobjects.PropertyId;
-import pe.edu.upc.nido_urbano_platform.contracts.domain.model.valueobjects.Term;
 import pe.edu.upc.nido_urbano_platform.contracts.domain.model.valueobjects.UserId;
+import pe.edu.upc.nido_urbano_platform.contracts.domain.model.valueobjects.Terms;
 import pe.edu.upc.nido_urbano_platform.shared.domain.model.aggregates.AuditableAbstractAggregateRoot;
 
 import java.util.Date;
@@ -39,7 +38,7 @@ public class PurchaseContract extends AuditableAbstractAggregateRoot<PurchaseCon
     })
     private LandlordId landlordId;
 
-    @Column(name = "status", nullable = false)
+    @Column(name = "status")
     private String status;
 
     @Column(name = "purchase_price", nullable = false)
@@ -52,12 +51,18 @@ public class PurchaseContract extends AuditableAbstractAggregateRoot<PurchaseCon
     private String downPayment;
 
     @Embedded
-    private Term terms;
+    @AttributeOverrides({
+            @AttributeOverride(name = "value", column = @Column(name = "terms", nullable = false))
+    })
+    private Terms terms;
 
-    @Column(name = "closing_date", nullable = false)
+    @Column(name = "agreedTerms")
+    private Boolean agreedTerms;
+
+    @Column(name = "closing_date")
     private Date closingDate;
 
-    @Column(name = "transferCostsIncluded", nullable = false)
+    @Column(name = "transferCostsIncluded")
     private Boolean transferCostsIncluded;
 
     // Create
@@ -68,18 +73,20 @@ public class PurchaseContract extends AuditableAbstractAggregateRoot<PurchaseCon
         this.status = command.status();
         this.purchasePrice = command.purchasePrice();
         this.paymentMethod = command.paymentMethod();
-        this.terms = new Term();
+        this.terms = new Terms((command.terms()));
+        this.agreedTerms = command.agreedTerms();
         this.closingDate = command.closingDate();
         this.transferCostsIncluded = command.transferCostsIncluded();
     }
 
     // Update
-    public void updatePurchaseDetails(String status, Double purchasePrice, String paymentMethod, Date closingDate, Term terms) {
+    public void updatePurchaseDetails(String status, Double purchasePrice, String paymentMethod, Date closingDate, Boolean agreedTerms) {
         this.status = status;
         this.purchasePrice = purchasePrice;
         this.paymentMethod = paymentMethod;
         this.closingDate = closingDate;
         this.terms = terms;
+        this.agreedTerms = agreedTerms;
     }
 
     // Delete

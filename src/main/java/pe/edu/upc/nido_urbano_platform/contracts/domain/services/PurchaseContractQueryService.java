@@ -1,15 +1,17 @@
 package pe.edu.upc.nido_urbano_platform.contracts.domain.services;
 
 import pe.edu.upc.nido_urbano_platform.contracts.domain.model.aggregates.PurchaseContract;
+import pe.edu.upc.nido_urbano_platform.contracts.domain.model.queries.GetAllContractsByPropertyIdQuery;
+import pe.edu.upc.nido_urbano_platform.contracts.domain.model.queries.GetAllContractsByLandLordIdQuery;
+import pe.edu.upc.nido_urbano_platform.contracts.domain.model.queries.GetAllContractsByUserIdQuery;
+import pe.edu.upc.nido_urbano_platform.contracts.domain.model.queries.GetContractByIdQuery;
 
-import java.util.List;
 import java.util.Optional;
 
 public interface PurchaseContractQueryService {
-    Optional<PurchaseContract> getContractDetails(Long contractId);
-    List<PurchaseContract> listContractsByProperty(Long propertyId);
-    Optional<PurchaseContract> findContractsByTenant(Long tenantId);
-    List<PurchaseContract> findContractsByLandlord(Long landlordId);
 
-    Object findById(Long contractId);
+    Optional<PurchaseContract> handle(GetAllContractsByUserIdQuery query);
+    Optional<PurchaseContract> handle(GetAllContractsByLandLordIdQuery query);
+    Optional<PurchaseContract> handle(GetAllContractsByPropertyIdQuery query);
+    Optional<PurchaseContract> handle(GetContractByIdQuery query);
 }
