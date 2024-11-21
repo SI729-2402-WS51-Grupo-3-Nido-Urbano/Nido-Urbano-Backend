@@ -1,7 +1,6 @@
 package pe.edu.upc.nido_urbano_platform.payments.domain.model.aggregates;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PositiveOrZero;
