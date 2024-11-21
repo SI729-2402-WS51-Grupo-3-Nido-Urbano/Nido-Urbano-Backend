@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.nido_urbano_platform.contracts.domain.model.commands.DeletePurchaseContractCommand;
 import pe.edu.upc.nido_urbano_platform.contracts.domain.model.queries.GetContractByIdQuery;
+import pe.edu.upc.nido_urbano_platform.contracts.domain.model.queries.GetContractIdByPropertyIdQuery;
 import pe.edu.upc.nido_urbano_platform.contracts.domain.services.PurchaseContractCommandService;
 import pe.edu.upc.nido_urbano_platform.contracts.domain.services.PurchaseContractQueryService;
 import pe.edu.upc.nido_urbano_platform.contracts.interfaces.rest.resources.CreatePurchaseContractResource;

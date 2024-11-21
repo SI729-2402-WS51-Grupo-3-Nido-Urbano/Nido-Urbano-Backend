@@ -4,7 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import pe.edu.upc.nido_urbano_platform.contracts.domain.model.aggregates.PurchaseContract;
 import pe.edu.upc.nido_urbano_platform.contracts.domain.model.valueobjects.LandlordId;
-import pe.edu.upc.nido_urbano_platform.contracts.domain.model.valueobjects.PropertyId;
 
 import java.util.Optional;
 
@@ -15,7 +14,7 @@ public interface PurchaseContractRepository extends JpaRepository<PurchaseContra
     //List<PurchaseContract> findByLandlordId(Long landlordId);
 
     // Find contract by property ID
-    Optional<PurchaseContract> findByPropertyId(PropertyId propertyId);
+    Optional<PurchaseContract> findByPropertyId(long propertyId);
 
     Optional<PurchaseContract> findByLandlordId(LandlordId landlordId);
 }

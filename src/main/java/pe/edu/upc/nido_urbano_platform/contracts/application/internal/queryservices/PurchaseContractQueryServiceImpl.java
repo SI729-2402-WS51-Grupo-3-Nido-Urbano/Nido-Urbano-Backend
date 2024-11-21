@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import pe.edu.upc.nido_urbano_platform.contracts.domain.model.aggregates.PurchaseContract;
-import pe.edu.upc.nido_urbano_platform.contracts.domain.model.queries.GetAllContractsByPropertyIdQuery;
+import pe.edu.upc.nido_urbano_platform.contracts.domain.model.queries.GetContractIdByPropertyIdQuery;
 import pe.edu.upc.nido_urbano_platform.contracts.domain.model.queries.GetAllContractsByLandLordIdQuery;
 import pe.edu.upc.nido_urbano_platform.contracts.domain.model.queries.GetAllContractsByUserIdQuery;
 import pe.edu.upc.nido_urbano_platform.contracts.domain.model.queries.GetContractByIdQuery;
@@ -35,7 +35,7 @@ public class PurchaseContractQueryServiceImpl implements PurchaseContractQuerySe
     }
 
     @Override
-    public Optional<PurchaseContract> handle(GetAllContractsByPropertyIdQuery query) {
+    public Optional<PurchaseContract> handle(GetContractIdByPropertyIdQuery query) {
         return this.purchaseContractRepository.findByPropertyId(query.propertyId());
     }
 

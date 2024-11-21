@@ -28,7 +28,7 @@ public class RentalContract extends AuditableAbstractAggregateRoot<RentalContrac
 
     @Embedded
     @AttributeOverrides( {
-            @AttributeOverride(name = "userId", column = @Column(name = "user_id", nullable = false))
+            @AttributeOverride(name = "userId", column = @Column(name = "user_id"))
     })
     private UserId userId;
 
@@ -47,7 +47,7 @@ public class RentalContract extends AuditableAbstractAggregateRoot<RentalContrac
     @Column(name = "payment_frequency")
     private String paymentFrequency;
 
-    @Column(name = "deposit_amount", nullable = false)
+    @Column(name = "deposit_amount")
     private Double depositAmount;
 
     @Column(name = "termination_fee")
@@ -65,10 +65,10 @@ public class RentalContract extends AuditableAbstractAggregateRoot<RentalContrac
     @Column(name = "agreedTerms")
     private Boolean agreedTerms;
 
-    @Column(name = "start_date", nullable = false)
+    @Column(name = "start_date")
     private Date startDate;
 
-    @Column(name = "end_date", nullable = false)
+    @Column(name = "end_date")
     private Date endDate;
 
     //Create

@@ -5,9 +5,9 @@ import org.springframework.stereotype.Service;
 
 import pe.edu.upc.nido_urbano_platform.contracts.domain.model.aggregates.RentalContract;
 import pe.edu.upc.nido_urbano_platform.contracts.domain.model.queries.GetAllContractsByLandLordIdQuery;
-import pe.edu.upc.nido_urbano_platform.contracts.domain.model.queries.GetAllContractsByPropertyIdQuery;
 import pe.edu.upc.nido_urbano_platform.contracts.domain.model.queries.GetAllContractsByUserIdQuery;
 import pe.edu.upc.nido_urbano_platform.contracts.domain.model.queries.GetContractByIdQuery;
+import pe.edu.upc.nido_urbano_platform.contracts.domain.model.queries.GetContractIdByPropertyIdQuery;
 import pe.edu.upc.nido_urbano_platform.contracts.domain.services.RentalContractQueryService;
 import pe.edu.upc.nido_urbano_platform.contracts.infrastructure.persistence.jpa.repositories.RentContractRepository;
 
@@ -34,7 +34,7 @@ public class RentContractQueryServiceImpl implements RentalContractQueryService 
     }
 
     @Override
-    public Optional<RentalContract> handle(GetAllContractsByPropertyIdQuery query) {
+    public Optional<RentalContract> handle(GetContractIdByPropertyIdQuery query) {
         return this.rentContractRepository.findByPropertyId(query.propertyId());
     }
 
