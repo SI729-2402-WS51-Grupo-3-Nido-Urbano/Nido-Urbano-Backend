@@ -58,6 +58,7 @@ public class House extends AuditableAbstractAggregateRoot<House> {
     @Column(name = "status_landlord", length = 10, nullable = false)
     private StatusLandlord statusLandlord;
 
+    
     @Column(name="photo", nullable = false)
     private String photo;
     @Column(name="video", nullable = false)
