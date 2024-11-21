@@ -30,12 +30,12 @@ public class House extends AuditableAbstractAggregateRoot<House> {
 
     @Enumerated(EnumType.STRING)
     @NotNull
-    @Column(name = "house_type", length = 10, nullable = false)
+    @Column(name = "house_type", length = 20, nullable = false)
     private HouseType houseType;
 
     @Enumerated(EnumType.STRING)
     @NotNull
-    @Column(name = "house_modal", length = 10, nullable = false)
+    @Column(name = "house_modal", length = 20, nullable = false)
     private HouseModal houseModal;
 
     @Column(name = "price", nullable = false)
@@ -55,7 +55,7 @@ public class House extends AuditableAbstractAggregateRoot<House> {
 
     @Enumerated(EnumType.STRING)
     @NotNull
-    @Column(name = "status_landlord", length = 10, nullable = false)
+    @Column(name = "status_landlord", length = 20, nullable = false)
     private StatusLandlord statusLandlord;
 
     
@@ -63,7 +63,7 @@ public class House extends AuditableAbstractAggregateRoot<House> {
     private String photo;
     @Column(name="video", nullable = false)
     private String video;
-    @Column(name="terms_conditions", length = 100, nullable = false)
+    @Column(name="terms_conditions", length = 200, nullable = false)
     private String termsConditions;
 
 
