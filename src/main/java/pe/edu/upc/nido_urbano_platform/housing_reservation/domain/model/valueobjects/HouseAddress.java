@@ -3,12 +3,12 @@ package pe.edu.upc.nido_urbano_platform.housing_reservation.domain.model.valueob
 import jakarta.persistence.Embeddable;
 
 @Embeddable
-public record HouseAddress(String address) {
+public record HouseAddress(String houseAddress) {
     public HouseAddress() {
         this(null);
     }
     public HouseAddress {
-        if (address == null || address.isBlank()) {
+        if (houseAddress == null || houseAddress.isBlank()) {
             throw new IllegalArgumentException("Address cannot be null or blank");
         }
     }

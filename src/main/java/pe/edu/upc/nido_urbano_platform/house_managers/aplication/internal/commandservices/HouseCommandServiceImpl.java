@@ -29,7 +29,7 @@ public class HouseCommandServiceImpl implements HouseCommandService {
 
         if (this.houseRepository.existsByAddressAndHouseTypeAndHouseModal(new AddressHouse(command.address()), houseType, houseModal)) {
             if (command.houseType().equals("HOUSE") && command.houseModal().equals("SALE")) {
-                throw new IllegalArgumentException("House with address " + command.address() + " and house type " + command.houseType() + " and house modal " + command.houseModal() + " already exists");
+                throw new IllegalArgumentException("House with houseAddress " + command.address() + " and house type " + command.houseType() + " and house modal " + command.houseModal() + " already exists");
             }
         }
 
@@ -55,7 +55,7 @@ public class HouseCommandServiceImpl implements HouseCommandService {
         }
         if (this.houseRepository.existsByAddressAndHouseTypeAndHouseModalAndIdIsNot(new AddressHouse(command.address()), houseType, houseModal, houseId)) {
             if (command.houseType().equals("HOUSE") && command.houseModal().equals("SALE")) {
-                throw new IllegalArgumentException("House with address " + command.address() + " and house type " + command.houseType() + " and house modal " + command.houseModal() + " already exists");
+                throw new IllegalArgumentException("House with houseAddress " + command.address() + " and house type " + command.houseType() + " and house modal " + command.houseModal() + " already exists");
             }
         }
 

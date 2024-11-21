@@ -3,7 +3,7 @@ package pe.edu.upc.nido_urbano_platform.housing_reservation.domain.model.valueob
 public record HouseId(Long houseId) {
     public HouseId {
         if (houseId <= 0) {
-            throw new IllegalArgumentException("HouseId cannot be negative or zero");
+            throw new IllegalArgumentException("House Id cannot be negative or zero");
         }
     }
 

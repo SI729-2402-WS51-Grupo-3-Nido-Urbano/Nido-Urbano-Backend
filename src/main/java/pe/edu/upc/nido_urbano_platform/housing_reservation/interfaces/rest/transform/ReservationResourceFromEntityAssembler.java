@@ -8,7 +8,10 @@ public record ReservationResourceFromEntityAssembler() {
         return new ReservationResource(entity.getId(),
                 entity.getStartDate(),
                 entity.getEndDate(),
-                entity.getAddress(),
-                entity.getTenantName());
+                entity.getTenantAddress().tenantAddress(),
+                entity.getTenantName().tenantName(),
+                entity.getHouseAddress().houseAddress(),
+                entity.getHouseName().houseName(),
+                entity.getHouseId().houseId());
     }
 }

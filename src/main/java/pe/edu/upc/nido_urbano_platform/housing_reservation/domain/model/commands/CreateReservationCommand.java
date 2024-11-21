@@ -2,8 +2,11 @@ package pe.edu.upc.nido_urbano_platform.housing_reservation.domain.model.command
 
 import java.sql.Date;
 
-public record CreateReservationCommand(Date startDate,
-                                       Date endDate,
-                                       String street,
-                                       String tenantName) {
+public record CreateReservationCommand(String startDate,
+                                       String endDate,
+                                       String tenantAddress,
+                                       String tenantName,
+                                       String houseAddress,
+                                       String houseName,
+                                       Long houseId) {
 }

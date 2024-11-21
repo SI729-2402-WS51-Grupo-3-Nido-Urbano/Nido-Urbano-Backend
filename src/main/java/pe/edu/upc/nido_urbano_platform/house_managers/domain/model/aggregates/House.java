@@ -24,7 +24,7 @@ public class House extends AuditableAbstractAggregateRoot<House> {
 
     @Embedded
     @AttributeOverrides({
-            @AttributeOverride(name = "address", column = @Column(name = "address", length = 100, nullable = false))
+            @AttributeOverride(name = "houseAddress", column = @Column(name = "houseAddress", length = 100, nullable = false))
     })
     private AddressHouse address;
 
