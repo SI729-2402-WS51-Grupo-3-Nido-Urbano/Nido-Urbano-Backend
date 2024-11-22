@@ -7,6 +7,8 @@ import pe.edu.upc.nido_urbano_platform.housing_reservation.domain.model.commands
 import pe.edu.upc.nido_urbano_platform.housing_reservation.domain.model.valueobjects.*;
 import pe.edu.upc.nido_urbano_platform.shared.domain.model.aggregates.AuditableAbstractAggregateRoot;
 
+import java.util.Date;
+
 
 @Getter
 @Entity
@@ -18,14 +20,14 @@ public class Reservation extends AuditableAbstractAggregateRoot<Reservation> {
      */
     @NotNull
     @Column(name = "start_date", length = 40, nullable = false)
-    private String startDate;
+    private Date startDate;
 
     /**
      * End Date
      */
     @NotNull
     @Column(name = "end_date", length = 50, nullable = false)
-    private String endDate;
+    private Date endDate;
 
     /**
      * Tenant Address
@@ -77,8 +79,8 @@ public class Reservation extends AuditableAbstractAggregateRoot<Reservation> {
     //---------------------------------------------------
 
     // Constructors
-    public Reservation(String startDate,
-                       String endDate,
+    public Reservation(Date startDate,
+                       Date endDate,
                        String tenantAddress,
                        String tenantName,
                        String houseAddress,
@@ -106,8 +108,8 @@ public class Reservation extends AuditableAbstractAggregateRoot<Reservation> {
         );
     }
 
-    public void updateInformation(String startDate,
-                                  String endDate,
+    public void updateInformation(Date startDate,
+                                  Date endDate,
                                   String tenantAddress,
                                   String tenantName,
                                   String houseAddress,
