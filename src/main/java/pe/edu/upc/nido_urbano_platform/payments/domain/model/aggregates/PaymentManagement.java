@@ -154,7 +154,7 @@ public class PaymentManagement extends AuditableAbstractAggregateRoot<PaymentMan
         }
 
         // Tomamos la fecha del último pago realizado
-        Payments lastPayment = this.payments.getLast();
+        Payments lastPayment = this.payments.get(this.payments.size() - 1);;
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(lastPayment.getPaymentDate()); // Establecemos la fecha del último pago
 
