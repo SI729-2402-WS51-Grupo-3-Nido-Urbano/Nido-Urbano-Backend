@@ -13,5 +13,5 @@ public interface HouseQueryService {
     List<House> handle(GetAllHousesQuery query);
     List<House> handle(GetHouseByHouseModalQuery query);
     Optional<House> handle(GetHouseByIdQuery query);
-    Optional<House> handle(GetHouseByUserPropertyIdQuery query);
+    List<House> handle(GetHouseByUserPropertyIdQuery query);
 }

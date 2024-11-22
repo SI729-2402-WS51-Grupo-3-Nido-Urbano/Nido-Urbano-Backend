@@ -16,7 +16,7 @@ import java.util.Optional;
 public interface HouseRepository extends JpaRepository<House,Long> {
    boolean existsByAddressAndHouseTypeAndHouseModal(AddressHouse address, HouseType houseType, HouseModal houseModal);
     boolean existsByAddressAndHouseTypeAndHouseModalAndIdIsNot(AddressHouse address, HouseType houseType, HouseModal houseModal, Long id);
-    Optional<House> findByUserPropertyId(UserPropertyId userPropertyId);
+    List<House> findByUserPropertyId(UserPropertyId userPropertyId);
     List<House> findByHouseModal(HouseModal houseModal);
     List<House> findByAddress(AddressHouse address);
     boolean existsByAddress(AddressHouse address);

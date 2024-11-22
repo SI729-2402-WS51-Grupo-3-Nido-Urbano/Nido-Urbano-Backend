@@ -41,7 +41,7 @@ public class HouseQueryServiceImpl implements HouseQueryService {
     }
 
     @Override
-    public Optional<House> handle(GetHouseByUserPropertyIdQuery query) {
+    public List<House> handle(GetHouseByUserPropertyIdQuery query) {
         return this.houseRepository.findByUserPropertyId(new UserPropertyId(query.userPropertyId()));
     }
 }
