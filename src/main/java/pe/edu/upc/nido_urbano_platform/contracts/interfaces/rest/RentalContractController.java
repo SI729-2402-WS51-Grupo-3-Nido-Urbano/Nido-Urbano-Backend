@@ -21,7 +21,7 @@ import pe.edu.upc.nido_urbano_platform.contracts.interfaces.rest.transform.Updat
 import java.util.List;
 import java.util.stream.Collectors;
 
-@CrossOrigin(origins = "**", methods = { RequestMethod.POST, RequestMethod.GET, RequestMethod.PUT, RequestMethod.DELETE })
+@CrossOrigin(origins = "*", methods = { RequestMethod.POST, RequestMethod.GET, RequestMethod.PUT, RequestMethod.DELETE })
 @RestController
 @RequestMapping(value = "/api/v1/rentalContracts", produces = MediaType.APPLICATION_JSON_VALUE)
 @Tag(name = "Rental Contracts", description = "Rental Contracts Management Endpoints")

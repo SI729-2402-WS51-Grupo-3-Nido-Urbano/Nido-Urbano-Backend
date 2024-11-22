@@ -14,7 +14,7 @@ import pe.edu.upc.nido_urbano_platform.feedback.interfaces.rest.transform.Feedba
 import java.util.List;
 import java.util.stream.Collectors;
 
-@CrossOrigin(origins = "**", methods = { RequestMethod.POST, RequestMethod.GET, RequestMethod.PUT, RequestMethod.DELETE })
+@CrossOrigin(origins = "*", methods = { RequestMethod.POST, RequestMethod.GET, RequestMethod.PUT, RequestMethod.DELETE })
 @RestController
 @RequestMapping(value = "/api/v1/properties/{propertyId}/feedbacks", produces = MediaType.APPLICATION_JSON_VALUE)
 @Tag(name = "Feedbacks", description = "Feedback on Management Endpoints")
