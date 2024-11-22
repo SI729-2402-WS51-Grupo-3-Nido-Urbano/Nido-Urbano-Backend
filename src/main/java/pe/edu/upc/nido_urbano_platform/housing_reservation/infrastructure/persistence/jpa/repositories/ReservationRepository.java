@@ -3,7 +3,7 @@ package pe.edu.upc.nido_urbano_platform.housing_reservation.infrastructure.persi
 import org.springframework.data.jpa.repository.JpaRepository;
 import pe.edu.upc.nido_urbano_platform.housing_reservation.domain.model.aggregates.Reservation;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.Optional;
 
 public interface ReservationRepository extends JpaRepository<Reservation, Long> {

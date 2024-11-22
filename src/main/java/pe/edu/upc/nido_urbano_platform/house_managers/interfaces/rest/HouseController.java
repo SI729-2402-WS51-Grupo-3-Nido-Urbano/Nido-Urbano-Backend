@@ -21,7 +21,7 @@ import pe.edu.upc.nido_urbano_platform.house_managers.interfaces.rest.transform.
 import java.util.List;
 import java.util.stream.Collectors;
 
-@CrossOrigin(origins = "*",methods = {RequestMethod.GET,RequestMethod.POST,RequestMethod.PUT,RequestMethod.DELETE})
+@CrossOrigin(origins = "**",methods = {RequestMethod.GET,RequestMethod.POST,RequestMethod.PUT,RequestMethod.DELETE})
 @RestController
 @RequestMapping(value = "/api/v1/houses",produces = MediaType.APPLICATION_JSON_VALUE)
 @Tag(name = "Houses",description = "House Management Endpoints")
